@@ -5,37 +5,50 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "alloc3d.h"
+#include <math.h>
 
-int jacobi(double ***A, double ***b, double ***u, int N, int iter_max, double *tolerance) {
-    double ***u_new = malloc_3d(N, N, N);
-    if (u_new == NULL) {
-        perror("Allocation for u_new failed");
-        return -1;
-    }
+double jacobi(double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance) {
+    double h = 2.0 / (N + 1);
+    double h2 = h * h;
+    double max_diff = 0.0;
 
-    for (int i = 1; i < N - 1; i++) {
-        for (int j = 1; j < N - 1; j++) {
-            for (int k = 1; k < N - 1; k++) {
-                double sum = 0.0;
-                for (int l = 0; l < N; l++) {
-                    if (l != i) {
-                        sum += A[i][j][k] * u[l][j][k];
+    for (int iter = 0; iter < iter_max; iter++) {
+        for (int i = 1; i < N + 1; i++) {
+            for (int j = 1; j < N + 1; j++) {
+                for (int k = 1; k < N + 1; k++) {
+                    u_new[i][j][k] = (1.0 / 6.0) * (
+                        u[i - 1][j][k] + u[i + 1][j][k] +
+                        u[i][j - 1][k] + u[i][j + 1][k] +
+                        u[i][j][k - 1] + u[i][j][k + 1] +
+                        h2 * f[i][j][k]
+                    );
+                }
+            }
+        }
+
+        
+        for (int i = 1; i < N + 1; i++) {
+            for (int j = 1; j < N + 1; j++) {
+                for (int k = 1; k < N + 1; k++) {
+                    double diff = fabs(u_new[i][j][k] - u[i][j][k]);
+                    if (diff > max_diff) {
+                        max_diff = diff;
                     }
                 }
-                u_new[i][j][k] = (b[i][j][k] - sum) / A[i][i][k];
             }
         }
-    }
 
-    // Copy u_new back into u
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            for (int k = 0; k < N; k++) {
-                u[i][j][k] = u_new[i][j][k];
-            }
+        // Stop if converged
+        if (max_diff < *tolerance) {
+            printf("Converged after %d iterations with max_diff = %.6f\n", iter + 1, max_diff);
+            break;
         }
+
+        double ***temp = u;
+        u = u_new;
+        u_new = temp;
+
     }
 
-    free_3d(u_new);
-    return 0; 
+    return max_diff;
 }
