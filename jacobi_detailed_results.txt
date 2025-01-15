@@ -1,12 +1,12 @@
 Version, Threads, Iterations, Final max_diff, Execution Time (s)
-Version: 0, Threads: 12, Total Iterations: 10, Final max_diff: 0.012517, Execution Time: 0.935053 seconds
-Version: 1, Threads: 1, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 1.012807 seconds
-Version: 1, Threads: 2, Total Iterations: 10, Final max_diff: 0.012450, Execution Time: 0.522150 seconds
-Version: 1, Threads: 4, Total Iterations: 10, Final max_diff: 0.024750, Execution Time: 0.265991 seconds
-Version: 1, Threads: 8, Total Iterations: 10, Final max_diff: 0.035586, Execution Time: 0.162312 seconds
-Version: 1, Threads: 16, Total Iterations: 10, Final max_diff: 0.058337, Execution Time: 0.151127 seconds
-Version: 2, Threads: 1, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 0.906208 seconds
-Version: 2, Threads: 2, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 0.460092 seconds
-Version: 2, Threads: 4, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 0.242359 seconds
-Version: 2, Threads: 8, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 0.133837 seconds
-Version: 2, Threads: 16, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 0.143905 seconds
+Version: 0, Threads: 12, Total Iterations: 10, Final max_diff: 0.012517, Execution Time: 0.923033 seconds
+Version: 1, Threads: 1, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 1.026383 seconds
+Version: 1, Threads: 2, Total Iterations: 10, Final max_diff: 0.012450, Execution Time: 0.511324 seconds
+Version: 1, Threads: 4, Total Iterations: 10, Final max_diff: 0.024750, Execution Time: 0.263823 seconds
+Version: 1, Threads: 8, Total Iterations: 10, Final max_diff: 0.035586, Execution Time: 0.147429 seconds
+Version: 1, Threads: 16, Total Iterations: 10, Final max_diff: 0.058337, Execution Time: 0.155238 seconds
+Version: 2, Threads: 1, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 0.981448 seconds
+Version: 2, Threads: 2, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 0.497470 seconds
+Version: 2, Threads: 4, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 0.258212 seconds
+Version: 2, Threads: 8, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 0.137779 seconds
+Version: 2, Threads: 16, Total Iterations: 10, Final max_diff: 0.012332, Execution Time: 0.147509 seconds
