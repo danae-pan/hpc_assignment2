@@ -52,3 +52,95 @@ double jacobi(double ***f, double ***u, double ***u_new, int N, int iter_max, do
 
     return max_diff;
 }
+
+
+double jacobi_parallel(double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance) {
+    double h = 2.0 / (N + 1);
+    double h2 = h * h;
+    double max_diff = 0.0;
+
+    for (int iter = 0; iter < iter_max; iter++) {
+        max_diff = 0.0;
+        #pragma omp parallel for reduction(+:max_diff) schedule(static)
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= N; j++) {
+                for (int k = 1; k <= N; k++) {
+                    u_new[i][j][k] = (1.0 / 6.0) *(
+                        u[i-1][j][k] + u[i+1][j][k] +
+                        u[i][j-1][k] + u[i][j+1][k] +
+                        u[i][j][k-1] + u[i][j][k+1] +
+                        h2 * f[i][j][k]
+                    );
+                    double diff = fabs(u_new[i][j][k] - u[i][j][k]);
+                    if (diff > max_diff) {
+                        max_diff = diff;
+                    }
+                }
+            }
+        }
+
+        // Stop if converged
+        if (max_diff < *tolerance) {
+            printf("Converged after %d iterations with max_diff = %.6f\n", iter + 1, max_diff);
+            break;
+        }
+
+        // Swap u and u_new
+        double ***temp = u;
+        u = u_new;
+        u_new = temp;
+
+    }
+
+    return max_diff;
+}
+
+double jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance) {
+    double h = 2.0 / (N + 1);
+    double h2 = h * h;
+    double max_diff = 0.0;
+
+    for (int iter = 0; iter < iter_max; iter++) {
+        // Compute u_new in parallel
+        #pragma omp parallel for schedule(static)
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= N; j++) {
+                for (int k = 1; k <= N; k++) {
+                    u_new[i][j][k] = (1.0 / 6.0) * (
+                        u[i-1][j][k] + u[i+1][j][k] +
+                        u[i][j-1][k] + u[i][j+1][k] +
+                        u[i][j][k-1] + u[i][j][k+1] +
+                        h2 * f[i][j][k]
+                    );
+                }
+            }
+        }
+
+        // Compute max_diff in a separate loop
+        max_diff = 0.0;
+        #pragma omp parallel for reduction(max:max_diff) schedule(static)
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= N; j++) {
+                for (int k = 1; k <= N; k++) {
+                    double diff = fabs(u_new[i][j][k] - u[i][j][k]);
+                    if (diff > max_diff) {
+                        max_diff = diff;
+                    }
+                }
+            }
+        }
+
+        // Stop if converged
+        if (max_diff < *tolerance) {
+            printf("Converged after %d iterations with max_diff = %.6f\n", iter + 1, max_diff);
+            break;
+        }
+
+        // Swap u and u_new
+        double ***temp = u;
+        u = u_new;
+        u_new = temp;
+    }
+
+    return max_diff;
+}

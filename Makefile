@@ -20,8 +20,8 @@ ISA	=
 CHIP	= 
 ARCH	= 
 PARA	= 
-CFLAGS	= $(DEFS) $(ARCH) $(OPT) $(ISA) $(CHIP) $(IPO) $(PARA) $(XOPTS)
-LDFLAGS = -lm 
+CFLAGS	= $(DEFS) $(ARCH) $(OPT) $(ISA) $(CHIP) $(IPO) $(PARA) $(XOPTS) -fopenmp
+LDFLAGS = -lm -fopenmp
 
 all: $(TARGET_J) $(TARGET_GS) 
 
@@ -32,7 +32,7 @@ $(TARGET_GS): $(OBJECTS) $(OBJS_GS)
 	$(CC) -o $@ $(CFLAGS) $(OBJS_GS) $(OBJECTS) $(LDFLAGS)
 
 $(MAIN_J):
-	$(CC) -o $@ -D_JACOBI $(CFLAGS) -c main.c 
+	$(CC) -o $@ -D_JACOBI -D_JACOBI_PARALLEL -D_JACOBI_PARALLEL_OPT $(CFLAGS) -c main.c 
 
 $(MAIN_GS):
 	$(CC) -o $@ -D_GAUSS_SEIDEL $(CFLAGS) -c main.c 
