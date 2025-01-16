@@ -15,9 +15,6 @@ for N in grid_sizes:
     subset = data[data[:, 0] == N]
     plt.plot(subset[:, 1], subset[:, 4], marker='o', linestyle='-', label=f"Grid Size {int(N)}")
 
-# Adjust the Linear Speedup Line for Log Scale
-linear_speedup = threads  # Ideal speedup (y = x)
-plt.plot(threads, linear_speedup, linestyle='dashed', color='black', label="Linear Speedup (Ideal)")
 
 # Labels and title
 plt.xlabel("Number of Threads")
