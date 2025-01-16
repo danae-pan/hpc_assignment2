@@ -58,7 +58,9 @@ int main(int argc, char *argv[])
     threshold = atof(argv[3]);
     start_T = atof(argv[4]);
     version = atoi(argv[5]); // Select Jacobi version
+    if (argc == 7) {
 	output_type = atoi(argv[6]);  // ouput type
+    }
 
     // Allocate memory
     if ((f = malloc_3d(N + 2, N + 2, N + 2)) == NULL ||
