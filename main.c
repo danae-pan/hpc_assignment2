@@ -4,6 +4,7 @@
 #include <omp.h>
 #include "alloc3d.h"
 #include "jacobi.h"
+#include "gauss_seidel.h"
 #include "print.h"
 
 
@@ -56,13 +57,8 @@ int main(int argc, char *argv[])
     max_iter = atoi(argv[2]);
     threshold = atof(argv[3]);
     start_T = atof(argv[4]);
-    if (argc == 6)
-    {
-        version = atoi(argv[5]); // Select Jacobi version
-    }
-    if (argc == 7) {
+    version = atoi(argv[5]); // Select Jacobi version
 	output_type = atoi(argv[6]);  // ouput type
-    }
 
     // Allocate memory
     if ((f = malloc_3d(N + 2, N + 2, N + 2)) == NULL ||
@@ -74,37 +70,35 @@ int main(int argc, char *argv[])
     }
 
     // Initialize f, u, and u_new
-    delta = 2.0 / (N + 1);
-    for (int i = 0; i < N + 2; i++)
-    {
-        for (int j = 0; j < N + 2; j++)
-        {
-            for (int k = 0; k < N + 2; k++)
-            {
-                if (i == 0 || i == N + 1 || j == 0 || j == N + 1 || k == 0 || k == N + 1)
-                {
-                    u[i][j][k] = start_T;
-                }
-                else
-                {
-                    u[i][j][k] = 0.0;
-                }
-                u_new[i][j][k] = u[i][j][k];
+delta = 2.0 / (N + 1);
+for (int i = 0; i < N + 2; i++) {
+    for (int j = 0; j < N + 2; j++) {
+        for (int k = 0; k < N + 2; k++) {
+            double x = -1.0 + i * delta;
+            double y = -1.0 + j * delta;
+            double z = -1.0 + k * delta;
 
-                // Initialize f for the radiator as per the problem
-                if (i >= N * 0.125 && i <= N * 0.375 &&
-                    j >= N * 0.25 && j <= N * 0.5 &&
-                    k >= N * 0.333 && k <= N * 0.666)
-                {
-                    f[i][j][k] = 200.0;
-                }
-                else
-                {
-                    f[i][j][k] = 0.0;
-                }
+            // Set initial temperatures
+            if (i == 0 || i == N + 1 || k == 0 || k == N + 1 || j == N + 1) {
+                u[i][j][k] = 20.0;  // Five walls at 20°C
+            } else if (j == 0) {
+                u[i][j][k] = 0.0;  // The bottom wall at 0°C
+            } else {
+                u[i][j][k] = 0.0;  // Inside the domain
+            }
+            u_new[i][j][k] = u[i][j][k];
+
+            // Initialize f for the radiator
+            if (x >= -1.0 && x <= -3.0/8.0 &&
+                y >= -1.0 && y <= -0.5 &&
+                z >= -2.0/3.0 && z <= 0.0) {
+                f[i][j][k] = 200.0;  // Radiator heat source
+            } else {
+                f[i][j][k] = 0.0;  // No heat source elsewhere
             }
         }
     }
+}
 
     start_time = omp_get_wtime();
     // Select Jacobi version
@@ -142,6 +136,7 @@ int main(int argc, char *argv[])
     case 3:
         printf("Running Sequential Gauss-Seidel...\n");
         gauss_seidel(f, u, N, max_iter, &threshold);
+        break;
 #endif
     default:
         fprintf(stderr, "Invalid version selected! Use 0 for sequential, 1 for parallel simple, 2 for parallel optimized.\n");
@@ -150,14 +145,6 @@ int main(int argc, char *argv[])
 
     
     end_time = omp_get_wtime();
-
-/*  printf("Version: %d, Threads: %d, Total Iterations: %d, Final max_diff: %.6f, Execution Time: %.6f seconds\n",
-           version,
-           omp_get_max_threads(),
-           iterations,
-           max_diff,
-           end_time - start_time);
-           */  
 
     switch(output_type) {
 	case 0:

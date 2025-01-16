@@ -48,52 +48,46 @@
     return max_diff;
 }*/
 
-void gauss_seidel(double ***f, double ***u, int N, int iter_max, double *tolerance) {
-    double h = 2.0 / (N + 1);
+double gauss_seidel(double ***f, double ***u, int N, int iter_max, double *tolerance) {
+    double h = 2.0 / N;
     double h2 = h * h;
-    double gauss_scale = 1.0 / 6.0;
-    double norm_scale = 1.0 / (N * N * N); // Normalization factor for convergence check
-    double delta2 = h2;
+    double diff = 0.0;
     
-    int i, j, k, iteration = 0;
-    double convergence = INFINITY;
+    for (int iter = 0; iter < iter_max; iter++) {
+        diff = 0.0;
 
-    // Gauss-Seidel iterative solver
-    while (convergence > *tolerance && iteration < iter_max) {
-        convergence = 0.0;
+        for (int i = 1; i < N + 1; i++) {
+            for (int j = 1; j < N + 1; j++) {
+                for (int k = 1; k < N + 1; k++) {
+                    // Save old value
+                    double old_u = u[i][j][k];
 
-        for (i = 1; i <= N; i++) {
-            for (j = 1; j <= N; j++) {
-                for (k = 1; k <= N; k++) {
-                    // Compute updated value using Gauss-Seidel formula
-                    double new_u = gauss_scale * (
+                    // Compute Gauss-Seidel update
+                    u[i][j][k] = (1.0 / 6.0) * (
                         u[i - 1][j][k] + u[i + 1][j][k] +
                         u[i][j - 1][k] + u[i][j + 1][k] +
                         u[i][j][k - 1] + u[i][j][k + 1] +
-                        delta2 * f[i][j][k]
+                        h2 * f[i][j][k]
                     );
 
-                    // Compute difference for convergence check
-                    double diff = new_u - u[i][j][k];
-                    convergence += diff * diff;
-
-                    // Update u directly (Gauss-Seidel property)
-                    u[i][j][k] = new_u;
+                    // Compute squared difference for convergence check
+                    diff += (u[i][j][k] - old_u) * (u[i][j][k] - old_u);
                 }
             }
         }
 
-        // Normalize convergence
-        convergence = sqrt(norm_scale * convergence);
-        iteration++;
+        // Normalize difference
+        diff = sqrt(diff / (N * N * N));
 
         // Logging iteration progress
-        printf("Iteration: %d, Convergence Difference: %.6f\n", iteration, convergence);
+        printf("Iteration %d with mean squared difference = %.6f\n", iter + 1, diff);
+
+        // Stop if converged
+        if (diff < *tolerance) {
+            printf("Converged after %d iterations with mean squared difference = %.6f\n", iter + 1, diff);
+            break;
+        }
     }
 
-    // Final output
-    printf("Gauss-Seidel converged after %d iterations with final difference: %.6f\n", iteration, convergence);
-
-    // return convergence;
+    return diff;
 }
-
