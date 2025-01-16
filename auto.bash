@@ -8,9 +8,9 @@ THREADS=(1 2 4 8 16)
 
 # Define program parameters
 GRID_SIZE=100
-MAX_ITER=10
+MAX_ITER=50
 THRESHOLD=1e-6
-START_TEMP=0
+START_TEMP=20
 
 # Output file for results
 OUTPUT_FILE="jacobi_detailed_results.txt"

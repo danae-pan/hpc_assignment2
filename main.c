@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     double threshold = 1e-6, start_T = 20.0, delta;
     double ***f = NULL, ***u = NULL, ***u_new = NULL;
     double max_diff = 0.0;
+    double error = 0.0;
     int iterations = 0;
     double start_time, end_time; 
 
@@ -108,22 +109,18 @@ int main(int argc, char *argv[])
 #ifdef _JACOBI_PARALLEL
     case 1:
         printf("Running Parallel Simple Jacobi...\n");
-        do
-        {
-            max_diff = jacobi_parallel(f, u, u_new, N, max_iter, &threshold);
-            iterations++;
-        } while (max_diff > threshold && iterations < max_iter);
+        
+        error = jacobi_parallel(f, u, u_new, N, max_iter, &threshold);
+        printf("print %.6f", error);
         break;
 #endif
 
 #ifdef _JACOBI_PARALLEL_OPT
     case 2:
         printf("Running Parallel Optimized Jacobi...\n");
-        do
-        {
-            max_diff = jacobi_parallel_opt(f, u, u_new, N, max_iter, &threshold);
-            iterations++;
-        } while (max_diff > threshold && iterations < max_iter);
+        
+        error= jacobi_parallel_opt(f, u, u_new, N, max_iter, &threshold);
+        printf("print %.6f", error);
         break;
 #endif
     default:
@@ -134,12 +131,13 @@ int main(int argc, char *argv[])
     
     end_time = omp_get_wtime();
 
-    printf("Version: %d, Threads: %d, Total Iterations: %d, Final max_diff: %.6f, Execution Time: %.6f seconds\n",
+/*  printf("Version: %d, Threads: %d, Total Iterations: %d, Final max_diff: %.6f, Execution Time: %.6f seconds\n",
            version,
            omp_get_max_threads(),
            iterations,
            max_diff,
            end_time - start_time);
+           */  
 
     // Free memory
     free_3d(f);
