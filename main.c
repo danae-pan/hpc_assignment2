@@ -23,6 +23,34 @@ double jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int
 
 #endif
 
+// Function to measure execution time
+double measure_execution_time(double (*jacobi_func)(double ***, double ***, double ***, int, int, double *), double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance)
+{
+    double start_time = omp_get_wtime();
+    double error = jacobi_func(f, u, u_new, N, iter_max, tolerance);
+    double end_time = omp_get_wtime();
+    return end_time - start_time;
+}
+
+// Function to compute speedup
+#ifdef _JACOBI
+void compute_speedup(double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance)
+{
+    printf("Grid Size: %d\n", N);
+    double time_parallel = measure_execution_time(jacobi_parallel, f, u, u_new, N, iter_max, tolerance);
+    double time_parallel_opt = measure_execution_time(jacobi_parallel_opt, f, u, u_new, N, iter_max, tolerance);
+
+    printf("Execution Time (Parallel): %.6f seconds\n", time_parallel);
+    printf("Execution Time (Parallel Optimized): %.6f seconds\n", time_parallel_opt);
+
+    if (time_parallel > 0 && time_parallel_opt > 0)
+    {
+        printf("Speedup (Parallel vs Optimized): %.2fx\n", time_parallel / time_parallel_opt);
+    }
+    printf("------------------------------\n");
+}
+#endif
+
 int main(int argc, char *argv[])
 {
     int N = 100, max_iter = 1000, version = 0; // Default values
@@ -98,11 +126,8 @@ int main(int argc, char *argv[])
 #ifdef _JACOBI
     case 0:
         printf("Running Sequential Jacobi...\n");
-        do
-        {
-            max_diff = jacobi(f, u, u_new, N, max_iter, &threshold);
-            iterations++;
-        } while (max_diff > threshold && iterations < max_iter);
+        error = jacobi(f, u, u_new, N, max_iter, &threshold);
+        printf("print %.6f", error);
         break;
 #endif
 
@@ -111,6 +136,10 @@ int main(int argc, char *argv[])
         printf("Running Parallel Simple Jacobi...\n");
         
         error = jacobi_parallel(f, u, u_new, N, max_iter, &threshold);
+        
+    
+        compute_speedup(f, u, u_new, N, max_iter, &threshold);
+        
         printf("print %.6f", error);
         break;
 #endif
@@ -138,6 +167,8 @@ int main(int argc, char *argv[])
            max_diff,
            end_time - start_time);
            */  
+
+    
 
     // Free memory
     free_3d(f);

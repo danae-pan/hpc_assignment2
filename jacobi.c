@@ -52,7 +52,7 @@ double jacobi(double ***f, double ***u, double ***u_new, int N, int iter_max, do
     return diff;
 }
 
-double jacobi_parallel(double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance)
+double jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance)
 {
     double h = 2.0 / (N);
     double h2 = h * h;
@@ -61,7 +61,7 @@ double jacobi_parallel(double ***f, double ***u, double ***u_new, int N, int ite
     for (int iter = 1; iter <= iter_max; iter++)
     {
     diff = 0.0;
-    #pragma omp parallel for shared(f, u, u_new, h2) schedule(static)
+    #pragma omp parallel for shared(f, u, u_new, h2) schedule(static) 
         for (int i = 1; i <= N; i++)
         {
             for (int j = 1; j <= N; j++)
@@ -97,7 +97,7 @@ double jacobi_parallel(double ***f, double ***u, double ***u_new, int N, int ite
 }
 
 
-double jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance)
+double jacobi_parallel(double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance)
 {
     double h = 2.0 / N;
     double h2 = h * h;
@@ -123,7 +123,6 @@ double jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int
 
         // Compute difference
         diff = 0.0;
-        #pragma omp parallel for reduction(+:diff) schedule(static)
         for (int i = 1; i <= N; i++)
         {
             for (int j = 1; j <= N; j++)
