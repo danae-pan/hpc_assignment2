@@ -4,6 +4,7 @@
 #include <omp.h>
 #include "alloc3d.h"
 #include "jacobi.h"
+#include "print.h"
 
 
 #ifndef _JACOBI_H
@@ -23,6 +24,13 @@ double jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int
 
 #endif
 
+#ifndef _GAUSS_SEIDEL_H
+#define _GAUSS_SEIDEL_H
+
+void gauss_seidel(double ***f, double ***u, int N, int iter_max, double *threshold);
+
+#endif
+
 int main(int argc, char *argv[])
 {
     int N = 100, max_iter = 1000, version = 0; // Default values
@@ -31,12 +39,16 @@ int main(int argc, char *argv[])
     double max_diff = 0.0;
     double error = 0.0;
     int iterations = 0;
+    int		output_type = 0;
+    char	*output_prefix = "poisson_res";
+    char        *output_ext    = "";
+    char	output_filename[FILENAME_MAX];
     double start_time, end_time; 
 
     // Parse command-line arguments
-    if (argc < 5)
+    if (argc < 6)
     {
-        fprintf(stderr, "Usage: %s <grid_size> <max_iterations> <threshold> <start_temperature> [version]\n", argv[0]);
+        fprintf(stderr, "Usage: %s <grid_size> <max_iterations> <threshold> <start_temperature> [version] [output]\n", argv[0]);
         exit(EXIT_FAILURE);
     }
 
@@ -47,6 +59,9 @@ int main(int argc, char *argv[])
     if (argc == 6)
     {
         version = atoi(argv[5]); // Select Jacobi version
+    }
+    if (argc == 7) {
+	output_type = atoi(argv[6]);  // ouput type
     }
 
     // Allocate memory
@@ -123,6 +138,11 @@ int main(int argc, char *argv[])
         printf("print %.6f", error);
         break;
 #endif
+#ifdef _GAUSS_SEIDEL
+    case 3:
+        printf("Running Sequential Gauss-Seidel...\n");
+        gauss_seidel(f, u, N, max_iter, &threshold);
+#endif
     default:
         fprintf(stderr, "Invalid version selected! Use 0 for sequential, 1 for parallel simple, 2 for parallel optimized.\n");
         exit(EXIT_FAILURE);
@@ -138,6 +158,27 @@ int main(int argc, char *argv[])
            max_diff,
            end_time - start_time);
            */  
+
+    switch(output_type) {
+	case 0:
+	    // no output at all
+	    break;
+	case 3:
+	    output_ext = ".bin";
+	    sprintf(output_filename, "%s_%d%s", output_prefix, N, output_ext);
+	    fprintf(stderr, "Write binary dump to %s: ", output_filename);
+	    print_binary(output_filename, N+2, u);
+	    break;
+	case 4:
+	    output_ext = ".vtk";
+	    sprintf(output_filename, "%s_%d%s", output_prefix, N, output_ext);
+	    fprintf(stderr, "Write VTK file to %s: ", output_filename);
+	    print_vtk(output_filename, N+2, u);
+	    break;
+	default:
+	    fprintf(stderr, "Non-supported output type!\n");
+	    break;
+    }
 
     // Free memory
     free_3d(f);
