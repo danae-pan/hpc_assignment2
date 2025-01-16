@@ -70,7 +70,7 @@ double jacobi_parallel(double ***f, double ***u, double ***u_new, int N, int ite
     for (int iter = 0; iter < iter_max; iter++)
     {
         max_diff = 0.0;
-#pragma omp parallel for reduction(+ : max_diff) schedule(static)
+#pragma omp parallel for shared(f, u, u_new, h2) schedule(static)
         for (int i = 1; i <= N; i++)
         {
             for (int j = 1; j <= N; j++)
@@ -114,7 +114,7 @@ double jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int
     for (int iter = 0; iter < iter_max; iter++) {
         max_diff = 0.0;
 
-        #pragma omp parallel for collapse(3) schedule(static) reduction(max:max_diff)
+        #pragma omp parallel for collapse(2) shared(f, u, u_new, h2) schedule(static)
         for (int i = 1; i <= N; i++) {
             for (int j = 1; j <= N; j++) {
                 for (int k = 1; k <= N; k++) {
@@ -125,9 +125,11 @@ double jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int
                         h2 * f[i][j][k]
                     );
                     double diff = fabs(updated_value - u[i][j][k]);
+                    
                     if (diff > max_diff) {
-                        max_diff = diff;
+                        max_diff = diff;  // Needs to be inside reduction
                     }
+
                     u_new[i][j][k] = updated_value;
                 }
             }
