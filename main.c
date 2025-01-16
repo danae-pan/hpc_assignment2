@@ -28,7 +28,7 @@ double jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int
 #ifndef _GAUSS_SEIDEL_H
 #define _GAUSS_SEIDEL_H
 
-void gauss_seidel(double ***f, double ***u, int N, int iter_max, double *threshold);
+double gauss_seidel(double ***f, double ***u, int N, int iter_max, double *threshold);
 
 #endif
 
@@ -109,11 +109,8 @@ for (int i = 0; i < N + 2; i++) {
 #ifdef _JACOBI
     case 0:
         printf("Running Sequential Jacobi...\n");
-        do
-        {
-            max_diff = jacobi(f, u, u_new, N, max_iter, &threshold);
-            iterations++;
-        } while (max_diff > threshold && iterations < max_iter);
+        error = jacobi(f, u, u_new, N, max_iter, &threshold);
+        printf("print %.6f", error);
         break;
 #endif
 
@@ -137,7 +134,8 @@ for (int i = 0; i < N + 2; i++) {
 #ifdef _GAUSS_SEIDEL
     case 3:
         printf("Running Sequential Gauss-Seidel...\n");
-        gauss_seidel(f, u, N, max_iter, &threshold);
+        error= gauss_seidel(f, u, N, max_iter, &threshold);
+        printf("print %.6f", error);
         break;
 #endif
     default:
