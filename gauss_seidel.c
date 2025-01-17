@@ -45,7 +45,7 @@ double gauss_seidel(double ***f, double ***u, int N, int iter_max, double *toler
         if (diff < *tolerance) {
             printf("Converged after %d iterations with mean squared difference = %.6f\n", iter + 1, diff);
             printf("Final Iteration: %d\n", iter + 1);  // Print final iteration
-            printf("Execution Time: %.6f seconds\n", omp_get_wtime() - start_time);  // Print execution time
+            printf("Exec Time: %.6f seconds\n", omp_get_wtime() - start_time);  // Print execution time
             break;
         }
     }

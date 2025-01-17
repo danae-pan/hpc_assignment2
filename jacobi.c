@@ -14,6 +14,7 @@ double jacobi(double ***f, double ***u, double ***u_new, int N, int iter_max, do
     double h = 2.0 / N;
     double h2 = h * h;
     double diff = 0.0;
+    double start_time = omp_get_wtime();  // Start timing
 
     for (int iter = 0; iter < iter_max; iter++)
     {
@@ -40,6 +41,8 @@ double jacobi(double ***f, double ***u, double ***u_new, int N, int iter_max, do
         if (diff < *tolerance)
         {
             printf("Converged after %d iterations with mean squared difference = %.6f\n", iter + 1, diff);
+            printf("Final Iteration: %d\n", iter + 1);  // Print final iteration
+            printf("Exec Time: %.6f seconds\n", omp_get_wtime() - start_time);  // Print execution time
             break;
         }
 

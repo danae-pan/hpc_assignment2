@@ -1,10 +1,22 @@
 #!/bin/bash
 
+#BSUB -J gauss_scaling
+#BSUB -o gauss_scaling_%j.out
+#BSUB -q hpcintro
+#BSUB -n 24
+#BSUB -R "rusage[mem=10GB]"
+#BSUB -W 00:30
+# assures that your job has a whole CPU for itself (shared L3 cache)
+#BSUB -R "span[hosts=1]"
+
+# Use ⁠ nodestat -F hpcintro ⁠ to figure out what models are available
+#BSUB -R "select[model == XeonE5_2650v4]"
+
 OUTPUT_FILE="gauss_seidel_scaling.data"
 
 # Define grid sizes and thread counts to test
-GRID_SIZES=(50 100 200)
-THREADS=(1 2 4 8)
+GRID_SIZES=(100 200 300 400)
+THREADS=(1 2 4 8 16)
 
 # Write the header
 echo "# Grid_Size Threads Parallel_Time Speedup" > $OUTPUT_FILE
