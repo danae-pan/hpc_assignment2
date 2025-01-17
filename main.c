@@ -136,7 +136,11 @@ int main(int argc, char *argv[])
 
     if (strstr(argv[0], "poisson_j_opt") != NULL) {
         strcpy(output_file, "jacobi_opt_results.data");  // Optimized results file
-    } else {
+    } else if (strstr(argv[0], "poisson_j_thread") != NULL) {
+    printf("%.6f\n", end_time - start_time);  // Ensure only time is printed
+    fflush(stdout);  // Force immediate output (important in HPC clusters)
+    return 0;  // Exit immediately to avoid printing anything else
+} else{
         // Non-optimized results file based on version
         sprintf(output_file, "jacobi_noopt_results_v%d.data", version);
     }
@@ -152,6 +156,7 @@ int main(int argc, char *argv[])
     // Append results: Parallel version, Grid size (N), Iterations, Threads, Tolerance, Final Diff, Time(s)
     fprintf(fp, "%d %d %d %d %.6f %.6f %.6f\n", version, N, omp_get_max_threads(), iterations, threshold, final_diff, end_time - start_time);
     fclose(fp);
+
 
     printf("Results saved to %s\n", output_file);
     // Free Memory
