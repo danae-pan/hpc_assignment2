@@ -4,11 +4,13 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <omp.h>
 
 double gauss_seidel(double ***f, double ***u, int N, int iter_max, double *tolerance) {
     double h = 2.0 / N;
     double h2 = h * h;
     double diff = 0.0;
+    double start_time = omp_get_wtime();  // Start timing
     
     for (int iter = 0; iter < iter_max; iter++) {
         diff = 0.0;
@@ -42,6 +44,8 @@ double gauss_seidel(double ***f, double ***u, int N, int iter_max, double *toler
         // Stop if converged
         if (diff < *tolerance) {
             printf("Converged after %d iterations with mean squared difference = %.6f\n", iter + 1, diff);
+            printf("Final Iteration: %d\n", iter + 1);  // Print final iteration
+            printf("Execution Time: %.6f seconds\n", omp_get_wtime() - start_time);  // Print execution time
             break;
         }
     }
