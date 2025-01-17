@@ -12,7 +12,7 @@ OBJS_GS	= $(MAIN_GS) gauss_seidel.o
 
 # options and settings for the GCC compilers
 #
-CC	= gcc-14
+CC	= gcc
 DEFS	= 
 OPT	= -g -O3
 IPO	= 
