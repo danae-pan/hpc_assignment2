@@ -7,8 +7,8 @@
 #define _JACOBI_H
 
 double jacobi(double ***, double ***, double ***, int, int, double *);
-double jacobi_parallel(double ***, double ***, double ***, int, int, double *);
-double jacobi_parallel_opt(double ***, double ***, double ***, int, int, double *);
+int jacobi_parallel(double ***, double ***, double ***, int, int, double *, double *);
+int jacobi_parallel_opt(double ***, double ***, double ***, int, int, double *, double *);
 
 
 #endif

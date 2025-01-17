@@ -14,20 +14,20 @@ double jacobi(double ***f, double ***u, double ***u_new, int N, int iter_max, do
 #endif
 
 #ifdef _JACOBI_PARALLEL
-double jacobi_parallel(double ***f, double ***u, double ***u_new, int N, int iter_max, double *threshold);
+int jacobi_parallel(double ***f, double ***u, double ***u_new, int N, int iter_max, double *threshold, double * final_diff);
 #endif
 
 #ifdef _JACOBI_PARALLEL_OPT
-double jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int iter_max, double *threshold);
+int jacobi_parallel_opt(double ***f, double ***u, double ***u_new, int N, int iter_max, double *threshold, double * final_diff);
 #endif
 
 #endif
 
 // Function to measure execution time
-double measure_execution_time(double (*jacobi_func)(double ***, double ***, double ***, int, int, double *), double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance)
+/*double measure_execution_time(double (*jacobi_func)(double ***, double ***, double ***, int, int, double *, double*), double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance)
 {
     double start_time = omp_get_wtime();
-    double error = jacobi_func(f, u, u_new, N, iter_max, tolerance);
+    double error = jacobi_func(f, u, u_new, N, iter_max, tolerance, final_diff);
     double end_time = omp_get_wtime();
     return end_time - start_time;
 }
@@ -37,8 +37,8 @@ double measure_execution_time(double (*jacobi_func)(double ***, double ***, doub
 void compute_speedup(double ***f, double ***u, double ***u_new, int N, int iter_max, double *tolerance)
 {
     printf("Grid Size: %d\n", N);
-    double time_parallel = measure_execution_time(jacobi_parallel, f, u, u_new, N, iter_max, tolerance);
-    double time_parallel_opt = measure_execution_time(jacobi_parallel_opt, f, u, u_new, N, iter_max, tolerance);
+    double time_parallel = measure_execution_time(jacobi_parallel, f, u, u_new, N, iter_max, tolerance, final_diff);
+    double time_parallel_opt = measure_execution_time(jacobi_parallel_opt, f, u, u_new, N, iter_max, tolerance, final_diff);
 
     printf("Execution Time (Parallel): %.6f seconds\n", time_parallel);
     printf("Execution Time (Parallel Optimized): %.6f seconds\n", time_parallel_opt);
@@ -50,14 +50,15 @@ void compute_speedup(double ***f, double ***u, double ***u_new, int N, int iter_
     printf("------------------------------\n");
 }
 #endif
-
+*/
 int main(int argc, char *argv[])
 {
     int N = 100, max_iter = 1000, version = 0; // Default values
     double threshold = 1e-6, start_T = 20.0, delta;
     double ***f = NULL, ***u = NULL, ***u_new = NULL;
     double max_diff = 0.0;
-    double error = 0.0;
+    double final_diff = 0.0;
+    int error = 0.0;
     int iterations = 0;
     double start_time, end_time; 
 
@@ -119,7 +120,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    start_time = omp_get_wtime();
+    //start_time = omp_get_wtime();
     // Select Jacobi version
     switch (version)
     {
@@ -135,10 +136,14 @@ int main(int argc, char *argv[])
     case 1:
         printf("Running Parallel Simple Jacobi...\n");
         
-        error = jacobi_parallel(f, u, u_new, N, max_iter, &threshold);
+        final_diff = 0.0;
+        double start_time = omp_get_wtime();
+        error = jacobi_parallel(f, u, u_new, N, max_iter, &threshold, &final_diff);
+        double end_time = omp_get_wtime();
         
-    
-        compute_speedup(f, u, u_new, N, max_iter, &threshold);
+        double time_parallel = end_time - start_time;
+        printf("Execution_Time_Parallel: %.6f seconds\n", time_parallel);  // ✅ Structured label
+        //compute_speedup(f, u, u_new, N, max_iter, &threshold);
         
         printf("print %.6f", error);
         break;
@@ -148,7 +153,13 @@ int main(int argc, char *argv[])
     case 2:
         printf("Running Parallel Optimized Jacobi...\n");
         
-        error= jacobi_parallel_opt(f, u, u_new, N, max_iter, &threshold);
+        final_diff = 0.0;
+        double start_time_opt = omp_get_wtime();
+        error= jacobi_parallel_opt(f, u, u_new, N, max_iter, &threshold, &final_diff);
+        double end_time_opt = omp_get_wtime();
+        double time_parallel_opt = end_time_opt - start_time_opt;
+        
+        printf("Execution_Time_Optimized: %.6f seconds\n", time_parallel_opt);
         printf("print %.6f", error);
         break;
 #endif
@@ -158,7 +169,7 @@ int main(int argc, char *argv[])
     }
 
     
-    end_time = omp_get_wtime();
+    //end_time = omp_get_wtime();
 
 /*  printf("Version: %d, Threads: %d, Total Iterations: %d, Final max_diff: %.6f, Execution Time: %.6f seconds\n",
            version,
