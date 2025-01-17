@@ -1,50 +1,39 @@
-# Makefile
-#
-TARGET_J  = poisson_j		# Jacobi
-TARGET_GS = poisson_gs		# Gauss-Seidel
+# Makefile for OpenMP Jacobi Solver
 
-SOURCES	= main.c print.c alloc3d.c
-OBJECTS	= print.o alloc3d.o
-MAIN_J	= main_j.o
-MAIN_GS = main_gs.o
-OBJS_J	= $(MAIN_J) jacobi.o
-OBJS_GS	= $(MAIN_GS) gauss_seidel.o
+CC = gcc
+OPT_FAST = -O3 -march=native -fopenmp
+OPT_NONE = -O0 -fopenmp
 
-# options and settings for the GCC compilers
-#
-CC	= gcc-14
-DEFS	= 
-OPT	= -g -O3
-IPO	= 
-ISA	= 
-CHIP	= 
-ARCH	= 
-PARA	= 
-CFLAGS	= $(DEFS) $(ARCH) $(OPT) $(ISA) $(CHIP) $(IPO) $(PARA) $(XOPTS) -fopenmp
-LDFLAGS = -lm -fopenmp
+TARGET_J = poisson_j        # Unoptimized Jacobi Solver
+TARGET_J_OPT = poisson_j_opt  # Optimized Jacobi Solver
 
-all: $(TARGET_J) $(TARGET_GS) 
+SOURCES = main.c print.c alloc3d.c jacobi.c
 
-$(TARGET_J): $(OBJECTS) $(OBJS_J)
-	$(CC) -o $@ $(CFLAGS) $(OBJS_J) $(OBJECTS) $(LDFLAGS)
+# Object files for each build (unoptimized vs optimized)
+OBJECTS = main.o print.o alloc3d.o jacobi.o
+OBJECTS_OPT = main_opt.o print_opt.o alloc3d_opt.o jacobi_opt.o
 
-$(TARGET_GS): $(OBJECTS) $(OBJS_GS)
-	$(CC) -o $@ $(CFLAGS) $(OBJS_GS) $(OBJECTS) $(LDFLAGS)
+# Rule to build both programs
+all: $(TARGET_J) $(TARGET_J_OPT)
 
-$(MAIN_J):
-	$(CC) -o $@ -D_JACOBI -D_JACOBI_PARALLEL -D_JACOBI_PARALLEL_OPT $(CFLAGS) -c main.c 
+# Optimized version (-O3)
+$(TARGET_J_OPT): $(OBJECTS_OPT)
+	$(CC) $(OPT_FAST) -o $@ $(OBJECTS_OPT) -lm
 
-$(MAIN_GS):
-	$(CC) -o $@ -D_GAUSS_SEIDEL $(CFLAGS) -c main.c 
+# Unoptimized version (-O0)
+$(TARGET_J): $(OBJECTS)
+	$(CC) $(OPT_NONE) -o $@ $(OBJECTS) -lm
+
+# Compilation rules for standard (-O0)
+%.o: %.c
+	$(CC) $(OPT_NONE) -D_JACOBI -D_JACOBI_PARALLEL -D_JACOBI_PARALLEL_OPT -c $< -o $@
+
+# Compilation rules for optimized (-O3)
+%_opt.o: %.c
+	$(CC) $(OPT_FAST) -D_JACOBI -D_JACOBI_PARALLEL -D_JACOBI_PARALLEL_OPT -c $< -o $@
 
 clean:
-	@/bin/rm -f core *.o *~
+	rm -f *.o $(TARGET_J) $(TARGET_J_OPT)
 
 realclean: clean
-	@/bin/rm -f $(TARGET_J)  $(TARGET_GS)
-
-# DO NOT DELETE
-
-main_j.o: main.c print.h jacobi.h 
-main_gs.o: main.c print.h gauss_seidel.h
-print.o: print.h
+	rm -f jacobi_results.data

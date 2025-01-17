@@ -1,0 +1,565 @@
+Running Grid Size: 50 with 1 threads
+Parsed Arguments:
+N = 50, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 588 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 50 with 2 threads
+Parsed Arguments:
+N = 50, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 588 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 50 with 4 threads
+Parsed Arguments:
+N = 50, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 588 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 50 with 8 threads
+Parsed Arguments:
+N = 50, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 588 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 50 with 16 threads
+Parsed Arguments:
+N = 50, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 588 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 100 with 1 threads
+Parsed Arguments:
+N = 100, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 453 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 100 with 2 threads
+Parsed Arguments:
+N = 100, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 453 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 100 with 4 threads
+Parsed Arguments:
+N = 100, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 453 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 100 with 8 threads
+Parsed Arguments:
+N = 100, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 453 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 100 with 16 threads
+Parsed Arguments:
+N = 100, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 453 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 200 with 1 threads
+Parsed Arguments:
+N = 200, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 288 iterations with RMS diff = 0.009999
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 200 with 2 threads
+Parsed Arguments:
+N = 200, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 288 iterations with RMS diff = 0.009999
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 200 with 4 threads
+Parsed Arguments:
+N = 200, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 288 iterations with RMS diff = 0.009999
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 200 with 8 threads
+Parsed Arguments:
+N = 200, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 288 iterations with RMS diff = 0.009999
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 200 with 16 threads
+Parsed Arguments:
+N = 200, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 288 iterations with RMS diff = 0.009999
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 300 with 1 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 300 with 2 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 300 with 4 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 300 with 8 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 300 with 16 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results.data
+Running Grid Size: 400 with 1 threads
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23758409: <jacobi_noopt_v2_benchmark> in cluster <dcc> Exited
+
+Job <jacobi_noopt_v2_benchmark> was submitted from host <n-62-30-5> by user <s212166> in cluster <dcc> at Fri Jan 17 01:52:12 2025
+Job was executed on host(s) <24*n-62-21-75>, in queue <hpcintro>, as user <s212166> in cluster <dcc> at Fri Jan 17 01:52:13 2025
+</zhome/3d/9/163694> was used as the home directory.
+</zhome/3d/9/163694/Documents/HighPerf/part_III> was used as the working directory.
+Started at Fri Jan 17 01:52:13 2025
+Terminated at Fri Jan 17 02:00:13 2025
+Results reported at Fri Jan 17 02:00:13 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J jacobi_noopt_v2_benchmark
+#BSUB -o jacobi_noopt_v2_benchmark_%j.out
+#BSUB -q hpcintro
+#BSUB -n 24
+#BSUB -R "rusage[mem=10GB]"
+#BSUB -W 00:40
+# assures that your job has a whole CPU for itself (shared L3 cache)
+#BSUB -R "span[hosts=1]"
+
+# Use ⁠ nodestat -F hpcintro ⁠ to figure out what models are available
+#BSUB -R "select[model == XeonE5_2650v4]"
+
+# Define different grid sizes and thread counts
+GRID_SIZES=(50 100 200 300 400)
+THREADS=(1 2 4 8 16)
+
+# Output file
+OUTPUT_FILE="jacobi_noopt_results_v2.data"
+echo "# Version N Threads Iterations Tolerance Final_Diff Time(s)" > $OUTPUT_FILE  # Add header
+
+for N in "${GRID_SIZES[@]}"; do
+    for T in "${THREADS[@]}"; do
+        export OMP_NUM_THREADS=$T  # Set number of OpenMP threads
+
+        echo "Running Grid Size: $N with $T threads"
+
+        # Run the Jacobi solver and append results to file
+        ./poisson_j $N 1000 1e-2 20 2  # Run parallel version (1)
+    done
+done
+
+echo "Benchmark completed. Results saved to $OUTPUT_FILE"
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   1152.82 sec.
+    Max Memory :                                 1500 MB
+    Average Memory :                             968.67 MB
+    Total Requested Memory :                     245760.00 MB
+    Delta Memory :                               244260.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                6
+    Run time :                                   480 sec.
+    Turnaround time :                            481 sec.
+
+The output (if any) is above this job summary.
+
+Running Grid Size: 50 with 1 threads
+Parsed Arguments:
+N = 50, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 588 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 50 with 2 threads
+Parsed Arguments:
+N = 50, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 588 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 50 with 4 threads
+Parsed Arguments:
+N = 50, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 588 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 50 with 8 threads
+Parsed Arguments:
+N = 50, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 588 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 50 with 16 threads
+Parsed Arguments:
+N = 50, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 588 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 100 with 1 threads
+Parsed Arguments:
+N = 100, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 453 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 100 with 2 threads
+Parsed Arguments:
+N = 100, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 453 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 100 with 4 threads
+Parsed Arguments:
+N = 100, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 453 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 100 with 8 threads
+Parsed Arguments:
+N = 100, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 453 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 100 with 16 threads
+Parsed Arguments:
+N = 100, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 453 iterations with RMS diff = 0.009997
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 200 with 1 threads
+Parsed Arguments:
+N = 200, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 288 iterations with RMS diff = 0.009999
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 200 with 2 threads
+Parsed Arguments:
+N = 200, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 288 iterations with RMS diff = 0.009999
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 200 with 4 threads
+Parsed Arguments:
+N = 200, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 288 iterations with RMS diff = 0.009999
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 200 with 8 threads
+Parsed Arguments:
+N = 200, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 288 iterations with RMS diff = 0.009999
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 200 with 16 threads
+Parsed Arguments:
+N = 200, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 288 iterations with RMS diff = 0.009999
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 300 with 1 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 300 with 2 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 300 with 4 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 300 with 8 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 300 with 16 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 400 with 1 threads
+Parsed Arguments:
+N = 400, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 182 iterations with RMS diff = 0.009991
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 400 with 2 threads
+Parsed Arguments:
+N = 400, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 182 iterations with RMS diff = 0.009991
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 400 with 4 threads
+Parsed Arguments:
+N = 400, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 182 iterations with RMS diff = 0.009991
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 400 with 8 threads
+Parsed Arguments:
+N = 400, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 182 iterations with RMS diff = 0.009991
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 400 with 16 threads
+Parsed Arguments:
+N = 400, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Switching to Jacobi version 2...
+Running Parallel Optimized Jacobi...
+Converged after 182 iterations with RMS diff = 0.009991
+Results saved to jacobi_noopt_results_v2.data
+Benchmark completed. Results saved to jacobi_noopt_results_v2.data
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23758420: <jacobi_noopt_v2_benchmark> in cluster <dcc> Done
+
+Job <jacobi_noopt_v2_benchmark> was submitted from host <n-62-30-5> by user <s212166> in cluster <dcc> at Fri Jan 17 02:06:57 2025
+Job was executed on host(s) <24*n-62-21-77>, in queue <hpcintro>, as user <s212166> in cluster <dcc> at Fri Jan 17 02:06:59 2025
+</zhome/3d/9/163694> was used as the home directory.
+</zhome/3d/9/163694/Documents/HighPerf/part_III> was used as the working directory.
+Started at Fri Jan 17 02:06:59 2025
+Terminated at Fri Jan 17 02:23:19 2025
+Results reported at Fri Jan 17 02:23:19 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J jacobi_noopt_v2_benchmark
+#BSUB -o jacobi_noopt_v2_benchmark_%j.out
+#BSUB -q hpcintro
+#BSUB -n 24
+#BSUB -R "rusage[mem=10GB]"
+#BSUB -W 00:40
+# assures that your job has a whole CPU for itself (shared L3 cache)
+#BSUB -R "span[hosts=1]"
+
+# Use ⁠ nodestat -F hpcintro ⁠ to figure out what models are available
+#BSUB -R "select[model == XeonE5_2650v4]"
+
+# Define different grid sizes and thread counts
+GRID_SIZES=(50 100 200 300 400)
+THREADS=(1 2 4 8 16)
+
+# Output file
+OUTPUT_FILE="jacobi_noopt_results_v2.data"
+echo "# Version N Threads Iterations Tolerance Final_Diff Time(s)" > $OUTPUT_FILE  # Add header
+
+for N in "${GRID_SIZES[@]}"; do
+    for T in "${THREADS[@]}"; do
+        export OMP_NUM_THREADS=$T  # Set number of OpenMP threads
+
+        echo "Running Grid Size: $N with $T threads"
+
+        # Run the Jacobi solver and append results to file
+        ./poisson_j $N 1000 1e-2 20 2  # Run parallel version (1)
+    done
+done
+
+echo "Benchmark completed. Results saved to $OUTPUT_FILE"
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   2529.70 sec.
+    Max Memory :                                 1501 MB
+    Average Memory :                             1051.30 MB
+    Total Requested Memory :                     245760.00 MB
+    Delta Memory :                               244259.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                20
+    Run time :                                   980 sec.
+    Turnaround time :                            982 sec.
+
+The output (if any) is above this job summary.
+
+Running Grid Size: 300 with 1 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 300 with 2 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 300 with 4 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 300 with 8 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results_v2.data
+Running Grid Size: 300 with 16 threads
+Parsed Arguments:
+N = 300, iter_max = 1000, tolerance = 0.010000, start_T = 20.00, version = 2
+Running Parallel Optimized Jacobi...
+Converged after 221 iterations with RMS diff = 0.009971
+Results saved to jacobi_noopt_results_v2.data
+Benchmark completed. Results saved to jacobi_noopt_results_v2.data
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23782205: <jacobi_noopt_v2_benchmark> in cluster <dcc> Done
+
+Job <jacobi_noopt_v2_benchmark> was submitted from host <n-62-30-5> by user <s212166> in cluster <dcc> at Fri Jan 17 14:33:13 2025
+Job was executed on host(s) <24*n-62-21-74>, in queue <hpcintro>, as user <s212166> in cluster <dcc> at Fri Jan 17 14:33:21 2025
+</zhome/3d/9/163694> was used as the home directory.
+</zhome/3d/9/163694/Documents/HighPerf/part_III> was used as the working directory.
+Started at Fri Jan 17 14:33:21 2025
+Terminated at Fri Jan 17 14:38:08 2025
+Results reported at Fri Jan 17 14:38:08 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J jacobi_noopt_v2_benchmark
+#BSUB -o jacobi_noopt_v2_benchmark_%j.out
+#BSUB -q hpcintro
+#BSUB -n 24
+#BSUB -R "rusage[mem=10GB]"
+#BSUB -W 00:40
+# assures that your job has a whole CPU for itself (shared L3 cache)
+#BSUB -R "span[hosts=1]"
+
+# Use ⁠ nodestat -F hpcintro ⁠ to figure out what models are available
+#BSUB -R "select[model == XeonE5_2650v4]"
+
+# Define different grid sizes and thread counts
+GRID_SIZES=(50 100 200 300 400)
+THREADS=(1 2 4 8 16)
+
+# Output file
+OUTPUT_FILE="jacobi_noopt_results_v2.data"
+echo "# Version N Threads Iterations Tolerance Final_Diff Time(s)" > $OUTPUT_FILE  # Add header
+
+# for N in "${GRID_SIZES[@]}"; do
+#     for T in "${THREADS[@]}"; do
+#         export OMP_NUM_THREADS=$T  # Set number of OpenMP threads
+
+#         echo "Running Grid Size: $N with $T threads"
+
+#         # Run the Jacobi solver and append results to file
+#         ./poisson_j $N 1000 1e-2 20 2  # Run parallel version (1)
+#     done
+# done
+
+for T in "${THREADS[@]}"; do
+    export OMP_NUM_THREADS=$T  # Set number of OpenMP threads
+
+    echo "Running Grid Size: 300 with $T threads"
+
+    # Run the Jacobi solver and append results to file
+    ./poisson_j 300 1000 1e-2 20 2 # Run parallel version (1)
+done
+
+echo "Benchmark completed. Results saved to $OUTPUT_FILE"
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   740.98 sec.
+    Max Memory :                                 642 MB
+    Average Memory :                             641.80 MB
+    Total Requested Memory :                     245760.00 MB
+    Delta Memory :                               245118.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                12
+    Run time :                                   287 sec.
+    Turnaround time :                            295 sec.
+
+The output (if any) is above this job summary.
+
