@@ -134,10 +134,23 @@ for (int i = 0; i < N + 2; i++) {
 #ifdef _GAUSS_SEIDEL
     case 3:
         printf("Running Sequential Gauss-Seidel...\n");
-        error= gauss_seidel(f, u, N, max_iter, &threshold);
-        printf("print %.6f", error);
+        start_time = omp_get_wtime();  // Start Timer
+        error = gauss_seidel(f, u, N, max_iter, &threshold);
+        end_time = omp_get_wtime();  // End Timer
+        printf("Execution Time (Sequential Gauss-Seidel): %.6f seconds\n", end_time - start_time);
         break;
 #endif
+
+#ifdef _GAUSS_SEIDEL_PARALLEL
+    case 4:
+        printf("Running Parallel Gauss-Seidel...\n");
+        start_time = omp_get_wtime();  // Start Timer
+        gauss_seidel_parallel(N, max_iter, f, u);
+        end_time = omp_get_wtime();  // End Timer
+        printf("Execution Time (Parallel Gauss-Seidel): %.6f seconds\n", end_time - start_time);
+        break;
+#endif
+
     default:
         fprintf(stderr, "Invalid version selected! Use 0 for sequential, 1 for parallel simple, 2 for parallel optimized.\n");
         exit(EXIT_FAILURE);

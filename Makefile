@@ -12,7 +12,7 @@ OBJS_GS	= $(MAIN_GS) gauss_seidel.o
 
 # options and settings for the GCC compilers
 #
-CC	= gcc
+CC	= gcc-14
 DEFS	= 
 OPT	= -g -O3
 IPO	= 
@@ -35,7 +35,7 @@ $(MAIN_J):
 	$(CC) -o $@ -D_JACOBI -D_JACOBI_PARALLEL -D_JACOBI_PARALLEL_OPT $(CFLAGS) -c main.c 
 
 $(MAIN_GS):
-	$(CC) -o $@ -D_GAUSS_SEIDEL $(CFLAGS) -c main.c 
+	$(CC) -o $@ -D_GAUSS_SEIDEL -D_GAUSS_SEIDEL_PARALLEL $(CFLAGS) -c main.c 
 
 clean:
 	@/bin/rm -f core *.o *~
