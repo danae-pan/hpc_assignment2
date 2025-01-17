@@ -1,0 +1,85 @@
+Running Sequential Jacobi for Grid Size: 50 with Tolerance: 1e-1
+Running Sequential Jacobi for Grid Size: 50 with Tolerance: 1e-3
+Running Sequential Jacobi for Grid Size: 50 with Tolerance: 1e-6
+Running Sequential Jacobi for Grid Size: 100 with Tolerance: 1e-1
+Running Sequential Jacobi for Grid Size: 100 with Tolerance: 1e-3
+Running Sequential Jacobi for Grid Size: 100 with Tolerance: 1e-6
+Running Sequential Jacobi for Grid Size: 200 with Tolerance: 1e-1
+Running Sequential Jacobi for Grid Size: 200 with Tolerance: 1e-3
+Running Sequential Jacobi for Grid Size: 200 with Tolerance: 1e-6
+Running Sequential Jacobi for Grid Size: 300 with Tolerance: 1e-1
+Running Sequential Jacobi for Grid Size: 300 with Tolerance: 1e-3
+Running Sequential Jacobi for Grid Size: 300 with Tolerance: 1e-6
+Data saved to jacobi_convergence.data
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23785719: <jacobi_opt_benchmark> in cluster <dcc> Done
+
+Job <jacobi_opt_benchmark> was submitted from host <n-62-27-23> by user <s230274> in cluster <dcc> at Fri Jan 17 17:50:40 2025
+Job was executed on host(s) <24*n-62-21-8>, in queue <hpcintro>, as user <s230274> in cluster <dcc> at Fri Jan 17 17:50:42 2025
+</zhome/97/2/198344> was used as the home directory.
+</zhome/97/2/198344/assignment_2/his_version> was used as the working directory.
+Started at Fri Jan 17 17:50:42 2025
+Terminated at Fri Jan 17 17:54:20 2025
+Results reported at Fri Jan 17 17:54:20 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J jacobi_opt_benchmark
+#BSUB -o jacobi_opt_benchmark_%j.out
+#BSUB -q hpcintro
+#BSUB -n 24
+#BSUB -R "rusage[mem=10GB]"
+#BSUB -W 00:30
+# assures that your job has a whole CPU for itself (shared L3 cache)
+#BSUB -R "span[hosts=1]"
+
+# Use ⁠ nodestat -F hpcintro ⁠ to figure out what models are available
+#BSUB -R "select[model == XeonE5_2650v4]"
+OUTPUT_FILE="jacobi_convergence.data"
+
+# Define grid sizes and tolerances
+GRID_SIZES=(50 100 200 300)
+TOLERANCES=(1e-1 1e-3 1e-6)
+
+# Write the header
+echo "# Iteration Grid_Size Tolerance Diff" > $OUTPUT_FILE
+
+for N in "${GRID_SIZES[@]}"; do
+    for T in "${TOLERANCES[@]}"; do
+        echo "Running Sequential Jacobi for Grid Size: $N with Tolerance: $T"
+
+        # Run Jacobi with version 0 (sequential)
+        output=$(./poisson_j $N 1000 $T 20 0)
+
+        # Extract iteration number and diff values correctly
+        echo "$output" | awk -v N="$N" -v T="$T" '/Iteration/ {print $2, N, T, $(NF)}' >> $OUTPUT_FILE
+
+    done
+done
+
+echo "Data saved to $OUTPUT_FILE"
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   218.36 sec.
+    Max Memory :                                 640 MB
+    Average Memory :                             529.50 MB
+    Total Requested Memory :                     245760.00 MB
+    Delta Memory :                               245120.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   218 sec.
+    Turnaround time :                            220 sec.
+
+The output (if any) is above this job summary.
+
