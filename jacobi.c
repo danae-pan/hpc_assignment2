@@ -42,7 +42,7 @@ double jacobi(double ***f, double ***u, double ***u_new, int N, int iter_max, do
         {
             printf("Converged after %d iterations with mean squared difference = %.6f\n", iter + 1, diff);
             printf("Final Iteration: %d\n", iter + 1);  // Print final iteration
-            printf("Exec Time: %.6f seconds\n", omp_get_wtime() - start_time);  // Print execution time
+            printf("Exec Time: %.6f seconds\n", omp_get_wtime() - start_time);  // Print execution time used for iterations/sec
             break;
         }
 
